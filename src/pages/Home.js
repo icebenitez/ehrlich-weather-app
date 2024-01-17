@@ -1,40 +1,71 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import React, { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router";
 
-//UI
-import Container from "@mui/material/Container";
+// UI
 import Box from "@mui/material/Box";
-import Login from "./Login";
-import User from "./User";
+import Link from "@mui/material/Link";
+import { Button, InputAdornment, TextField } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+
+//custom hook
+import useAuthValidator from "../hooks/useAuthValidator";
 
 const Home = () => {
-  const { isAuthenticated, isLoading, error } = useAuth0();
+  const [user] = useAuthValidator();
+  const [githubUrl, setGithubUrl] = useState("");
+  const [city, setCity] = useState("");
+  const navigate = useNavigate();
 
-  const handleLandingDisplay = () => {
-    if (isLoading) {
-      return <p>Page is loading</p>;
-    }
-
-    if (error) {
-      return <p>Error</p>;
-    }
-
-    if (isAuthenticated) {
-      return <User />;
-    }
-
-    return <Login />;
+  const handleSearch = () => {
+    navigate(`/weather/${city}`);
   };
+
+  useEffect(() => {
+    // console.log(user);
+    if (user?.nickname) {
+      setGithubUrl(`https://github.com/${user.nickname}`);
+    }
+  }, [user]);
+
+  // useEffect(() => {
+  //   console.log("city", city);
+  // }, [city]);
 
   return (
     <>
-      <Container
+      <Box
         sx={{
-          height: "100vh",
+          marginBottom: "20px",
+          textAlign: "center",
         }}
       >
-        <Box>{handleLandingDisplay()}</Box>
-      </Container>
+        <p>{user?.name || "John Smith"}</p>
+        <div>
+          <Link href={githubUrl}>{githubUrl}</Link>
+        </div>
+        <div>
+          <TextField
+            // label="With normal TextField"
+            // id="filled-start-adornment"
+            // sx={{ m: 1, width: "25ch" }}
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+            variant="filled"
+          />
+        </div>
+
+        <div>
+          <Button onClick={() => handleSearch()}>Display Weather</Button>
+        </div>
+      </Box>
     </>
   );
 };
