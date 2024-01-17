@@ -7,8 +7,6 @@ import App from "./App";
 
 const domain = "dev-dxbcxifuyfdukw3i.us.auth0.com";
 const clientId = "Wsw0SsRe0Ovg7UkM7GZHWqZkSpl7fgnl";
-console.log(domain);
-console.log(clientId);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -27,10 +27,6 @@ const Home = () => {
     }
   }, [user]);
 
-  // useEffect(() => {
-  //   console.log("city", city);
-  // }, [city]);
-
   return (
     <>
       <Box
@@ -39,11 +35,14 @@ const Home = () => {
           textAlign: "center",
         }}
       >
-        <p>{user?.name || "John Smith"}</p>
-        <div>
-          <Link href={githubUrl}>{githubUrl}</Link>
-        </div>
-        <div>
+        <Box sx={{ display: { xs: "none", lg: "block" } }}>
+          <p>{user?.name || "John Smith"}</p>
+          <div>
+            <Link href={githubUrl}>{githubUrl}</Link>
+          </div>
+        </Box>
+
+        <Box>
           <TextField
             // label="With normal TextField"
             // id="filled-start-adornment"
@@ -60,11 +59,11 @@ const Home = () => {
             }}
             variant="filled"
           />
-        </div>
+        </Box>
 
-        <div>
+        <Box>
           <Button onClick={() => handleSearch()}>Display Weather</Button>
-        </div>
+        </Box>
       </Box>
     </>
   );

@@ -1,19 +1,19 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // components
+import Root from "./pages/Root";
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Weather from "./pages/Weather";
-import Root from "./pages/Root";
+import Error from "./pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <Error />,
     children: [
       {
-        path: "/",
         element: <Home />,
         index: true,
       },
