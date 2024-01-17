@@ -9,8 +9,7 @@ import useAuthValidator from "../hooks/useAuthValidator";
 import Button from "@mui/material/Button";
 import WeatherTable from "../components/WeatherTable";
 
-const apiKey =
-  process.env.REACT_APP_API_KEY || "adae9ddb6a8e7a9e378a4cdc0fbf1ccf";
+const apiKey = process.env.REACT_APP_API_KEY;
 console.log(apiKey);
 
 const Weather = () => {
