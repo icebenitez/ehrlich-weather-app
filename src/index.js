@@ -5,10 +5,10 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import "./index.css";
 import App from "./App";
 
-const domain = "dev-dxbcxifuyfdukw3i.us.auth0.com";
-const clientId = "Wsw0SsRe0Ovg7UkM7GZHWqZkSpl7fgnl";
-console.log(domain);
-console.log(clientId);
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+console.log("domain :>> ", domain);
+console.log("clientId :>> ", clientId);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

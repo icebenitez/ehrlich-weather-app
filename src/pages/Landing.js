@@ -15,8 +15,12 @@ const Landing = () => {
           marginBottom: "20px",
         }}
       >
-        Welcome to the weather forecast web application. Please log in with your
-        Github user to use the application and view the weather in your city.
+        <h1>Hello, World!</h1>
+        <p>
+          Welcome to the weather forecast web application. Please log in with
+          your Github user to use the application and view the weather in your
+          city.
+        </p>
       </Box>
       <Button variant="contained" onClick={() => loginWithRedirect()}>
         Log In
